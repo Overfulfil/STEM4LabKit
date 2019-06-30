@@ -1,0 +1,15 @@
+{
+
+    "TCS34725RGB|block": "自訂 G54 sensor",
+
+    "TCS34725RGB.TCS34725Start|block": "啟動 Sensor",
+    
+    "TCS34725RGB.TCS34725getClear|block": "讀取 TCS34725 Clear Light",
+
+    "TCS34725RGB.TCS34725getRed|block": "讀取 TCS34725 Red",
+
+    "TCS34725RGB.TCS34725getGreen|block": "讀取 TCS34725 Green",
+
+    "TCS34725RGB.TCS34725getBlue|block": "讀取 TCS34725 Blue",
+
+}
