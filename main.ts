@@ -1,11 +1,11 @@
-//% weight=0 color=#3CB371 icon="\uf1b3" block="TCS34725RGB"
+//% weight=0 color=#3CB371 icon="\uf1b3" block="RGB Color Sensor"
 
-namespace TCS34725RGB {
+namespace RGBcolorsensor {
 
     /* G54 TCS34725 RGBC color sensor addr 0x29 return boolean */
-    //% blockId="TCS34725Start" block="TCS34725 Start"
+    //% blockId="RGBStart" block="RGB Start"
     //% blockGap=2 weight=90
-    export function TCS34725Start(): boolean {
+    export function RGBStart(): boolean {
 	pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
 	pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
 	basic.pause(200)
@@ -80,9 +80,9 @@ namespace TCS34725RGB {
     }
 */
     /* G54 TCS34725 RGBC color sensor addr 0x29 register 0x14-15 command 0x94-95 return byte */
-    //% blockId="TCS34725getClear" block="TCS34725 get Clear Light"
+    //% blockId="RGBgetClear" block="RGB get Clear Light"
     //% blockGap=2 weight=86
-    export function TCS34725getClear(): number {
+    export function RGBgetClear(): number {
 	pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
 	pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
 	basic.pause(200)
@@ -93,9 +93,9 @@ namespace TCS34725RGB {
     }
 
     /* G54 TCS34725 RGBC color sensor addr 0x29 register 0x16-17 command 0x96-97 return byte */
-    //% blockId="TCS34725getRed" block="TCS34725 get Red"
+    //% blockId="RGBgetRed" block="RGB get Red"
     //% blockGap=2 weight=85
-    export function TCS34725getRed(): number {
+    export function RGBgetRed(): number {
 	pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
 	pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
 	basic.pause(200)
@@ -106,9 +106,9 @@ namespace TCS34725RGB {
     }
 
     /* G54 TCS34725 RGBC color sensor addr 0x29 register 0x18-19 command 0x98-99 return byte */
-    //% blockId="TCS34725getGreen" block="TCS34725 get Green"
+    //% blockId="RGBgetGreen" block="RGB get Green"
     //% blockGap=2 weight=84
-    export function TCS34725getGreen(): number {
+    export function RGBgetGreen(): number {
 	pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
 	pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
 	basic.pause(200)
@@ -119,9 +119,9 @@ namespace TCS34725RGB {
     }
 
     /* G54 TCS34725 RGBC color sensor addr 0x29 register 0x1A-1B command 0x9A-9B return byte */
-    //% blockId="TCS34725getBlue" block="TCS34725 get Blue"
+    //% blockId="RGBgetBlue" block="RGB get Blue"
     //% blockGap=2 weight=83
-    export function TCS34725getBlue(): number {
+    export function RGBgetBlue(): number {
 	pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
 	pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
 	basic.pause(200)
