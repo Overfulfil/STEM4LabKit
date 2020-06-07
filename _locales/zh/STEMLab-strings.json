@@ -1,15 +1,15 @@
 {
 
-    "RGBcolorsensor|block": "自訂 G54 sensor",
+    "STEMLab|block": "自訂 G54 sensor",
 
-    "RGBcolorsensor.RGBStart|block": "啟動 Sensor",
+    "STEMLab.RGBStart|block": "啟動 Sensor",
     
-    "RGBcolorsensor.RGBgetClear|block": "讀取 Clear Light",
+    "STEMLab.RGBgetClear|block": "讀取 Clear Light",
 
-    "RGBcolorsensor.RGBgetRed|block": "讀取 Red",
+    "STEMLab.RGBgetRed|block": "讀取 Red",
 
-    "RGBcolorsensor.RGBgetGreen|block": "讀取 Green",
+    "STEMLab.RGBgetGreen|block": "讀取 Green",
 
-    "RGBcolorsensor.RGBgetBlue|block": "讀取 Blue",
+    "STEMLab.RGBgetBlue|block": "讀取 Blue",
 
 }
