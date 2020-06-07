@@ -1,6 +1,6 @@
-# RGBColorSensor
+# STEMLab
 
-自製的 micro:bit RGB Color Sensor 積木
+STEM for Lab sensors module from Overfulfil Technology Limited
 
 ## License
 
@@ -12,5 +12,5 @@ MIT
 (The metadata above is needed for package search.)
 
 ```package
-rgbcolorsensorblock=github.com/henrywycheng/pxt-rgbcolorsensorblock
+STEMLab=github.com/Overfulfil/STEM4LabKit
 ```
