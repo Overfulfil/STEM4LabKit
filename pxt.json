@@ -1,7 +1,7 @@
 {
-    "name": "RGBColorSensor",
+    "name": "STEMLab",
     "version": "0.0.1",
-    "description": "自製的 micro:bit RGB Color Sensor 積木",
+    "description": "STEM for Lab Kit sensor module",
     "license": "MIT",
     "dependencies": {
         "core": "*"
@@ -9,7 +9,7 @@
     "files": [
         "README.md",
         "main.ts",
-        "_locales/zh/rgbcolorsensorblock-strings.json"
+        "_locales/zh/STEMLab-strings.json"
     ],
     "public": true
 }
