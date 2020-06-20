@@ -392,8 +392,6 @@ namespace STEMLab {
     }
 
 /* TVOC*/
-    /* CJMCU-8118 HDC1080 Temp&Humidity sensor addr 0x40 */
-    /* CJMCU-8118 CCS811 Gas sensor addr 0x5A */
     //% blockId="indenvStart" block="IndEnv Sensor Start"
     //% blockGap=2 weight=79
     export function indenvStart(): boolean {
@@ -431,7 +429,6 @@ namespace STEMLab {
     }
 	
 
-    /* CJMCU-8118 CCS811 read eCO2 addr 0x5A register 0x02 return 2 bytes */
     //% blockId="indenvgeteCO2" block="IndEnv get eCO2"
     //% blockGap=2 weight=76
     export function indenvgeteCO2(): number {
@@ -443,7 +440,6 @@ namespace STEMLab {
 	    return pins.i2cReadNumber(90, NumberFormat.UInt16BE, false)
     }
 
-    /* CJMCU-8118 CCS811 read VTOC addr 0x5A register 0x02 return 2 bytes */
     //% blockId="indenvgetTVOC" block="IndEnv get TVOC"
     //% blockGap=2 weight=75
     export function indenvgetTVOC(): number {
@@ -456,7 +452,6 @@ namespace STEMLab {
     }
 
 
-    /* CJMCU-8118 CCS811 Gas sensor addr 0x5A register 0x00 return 1 byte */
     //% blockId="indenvGasStatus" block="IndEnv Gas Status"
     //% blockGap=2 weight=74
     export function indenvGasStatus(): number {
@@ -470,8 +465,6 @@ namespace STEMLab {
 	    return GasStatus
     }
 
-
-    /* CJMCU-8118 CCS811 Gas sensor Data Ready, Gas Status bit3=1 */
     //% blockId="indenvGasReady" block="IndEnv Gas Data Ready"
     //% blockGap=2 weight=73
     export function indenvGasReady(): boolean {
