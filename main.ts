@@ -20,12 +20,13 @@ enum BME280_P {
 }
 
 //% weight=0 color=#3CB371 icon="\uf1b3" block="STEM For Lab Kit"
-
+//% groups=['Color', 'Gas', 'Pressure', 'Pressure', 'Moisture', 'others']
 namespace STEMLab {
 
     /* G54 TCS34725 RGBC color sensor addr 0x29 return boolean */
     //% blockId="RGBStart" block="RGB Start"
     //% blockGap=2 weight=90
+    //% group="Color"
     export function RGBStart(): boolean {
 	pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
 	pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
@@ -62,6 +63,7 @@ namespace STEMLab {
     /* G54 TCS34725 RGBC color sensor addr 0x29 register 0x14-15 command 0x94-95 return byte */
     //% blockId="RGBgetClear" block="RGB get Clear Light"
     //% blockGap=2 weight=86
+    //% group="Color"
     export function RGBgetClear(): number {
 	pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
 	pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
@@ -75,6 +77,7 @@ namespace STEMLab {
     /* G54 TCS34725 RGBC color sensor addr 0x29 register 0x16-17 command 0x96-97 return byte */
     //% blockId="RGBgetRed" block="RGB get Red"
     //% blockGap=2 weight=85
+    //% group="Color"
     export function RGBgetRed(): number {
 	pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
 	pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
@@ -88,6 +91,7 @@ namespace STEMLab {
     /* G54 TCS34725 RGBC color sensor addr 0x29 register 0x18-19 command 0x98-99 return byte */
     //% blockId="RGBgetGreen" block="RGB get Green"
     //% blockGap=2 weight=84
+    //% group="Color"
     export function RGBgetGreen(): number {
 	pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
 	pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
@@ -101,6 +105,7 @@ namespace STEMLab {
     /* G54 TCS34725 RGBC color sensor addr 0x29 register 0x1A-1B command 0x9A-9B return byte */
     //% blockId="RGBgetBlue" block="RGB get Blue"
     //% blockGap=2 weight=83
+    //% group="Color"
     export function RGBgetBlue(): number {
 	pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
 	pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
@@ -203,6 +208,7 @@ namespace STEMLab {
      */
     //% blockId="BME280_GET_PRESSURE" block="pressure %u"
     //% weight=80 blockGap=8
+    //% group="Pressure"
     export function pressure(u: BME280_P): number {
         get();
         if (u == BME280_P.Pa) return P;
@@ -214,6 +220,7 @@ namespace STEMLab {
      */
     //% blockId="BME280_GET_TEMPERATURE" block="temperature %u"
     //% weight=80 blockGap=8
+    //% group="Pressure"
     export function temperature(u: BME280_T): number {
         get();
         if (u == BME280_T.T_C) return T;
@@ -225,6 +232,7 @@ namespace STEMLab {
      */
     //% blockId="BME280_GET_HUMIDITY" block="humidity"
     //% weight=80 blockGap=8
+    //% group="Pressure"
     export function humidity(): number {
         get();
         return H;
@@ -235,6 +243,7 @@ namespace STEMLab {
      */
     //% blockId="BME280_POWER_ON" block="Power On"
     //% weight=22 blockGap=8
+    //% group="Pressure"
     export function PowerOn() {
         setreg(0xF4, 0x2F)
     }
@@ -244,6 +253,7 @@ namespace STEMLab {
      */
     //% blockId="BME280_POWER_OFF" block="Power Off"
     //% weight=21 blockGap=8
+    //% group="Pressure"
     export function PowerOff() {
         setreg(0xF4, 0)
     }
@@ -253,6 +263,7 @@ namespace STEMLab {
      */
     //% block="Dewpoint"
     //% weight=60 blockGap=8
+    //% group="Pressure"
     export function Dewpoint(): number {
         get();
         return T - Math.idiv(100 - H, 5)
@@ -262,6 +273,7 @@ namespace STEMLab {
      * Pressure below Event
      */
     //% block="Pressure below than %dat" dat.defl=100000
+    //% group="Pressure"
     export function PressureBelowThan(dat: number, body: () => void): void {
         control.inBackground(function () {
             while (true) {
@@ -278,6 +290,7 @@ namespace STEMLab {
      * Pressure higher Event
      */
     //% block="Pressure higher than %dat" dat.defl=100000
+    //% group="Pressure"
     export function PressureHigherThan(dat: number, body: () => void): void {
         control.inBackground(function () {
             while (true) {
@@ -310,6 +323,7 @@ namespace STEMLab {
      * humidity higher Event
      */
     //% block="Humidity higher than %dat" dat.defl=50
+    //% group="Pressure"
     export function HumidityHigherThan(dat: number, body: () => void): void {
         control.inBackground(function () {
             while (true) {
@@ -326,6 +340,7 @@ namespace STEMLab {
      * temperature below Event
      */
     //% block="Temperature below than %dat" dat.defl=10
+    //% group="Pressure"
     export function TemperatureBelowThan(dat: number, body: () => void): void {
         control.inBackground(function () {
             while (true) {
@@ -342,6 +357,7 @@ namespace STEMLab {
      * temperature higher Event
      */
     //% block="Temperature higher than %dat" dat.defl=30
+    //% group="Pressure"
     export function TemperatureHigherThan(dat: number, body: () => void): void {
         control.inBackground(function () {
             while (true) {
@@ -359,6 +375,7 @@ namespace STEMLab {
      */
     //% blockId="BME280_SET_ADDRESS" block="set address %addr"
     //% weight=20 blockGap=8
+    //% group="Pressure"
     export function Address(addr: BME280_I2C_ADDRESS) {
         BME280_I2C_ADDR = addr
     }
