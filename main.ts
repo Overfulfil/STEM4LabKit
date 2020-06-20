@@ -363,7 +363,7 @@ namespace STEMLab {
         BME280_I2C_ADDR = addr
     }
 	
-//Soil
+/*Soil*/
     //% blockId="readMoisture" block="Soil Moisture (0-4096)"
     //% blockGap=2 weight=79
     export function readMoisture(): number {
