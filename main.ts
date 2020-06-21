@@ -341,6 +341,7 @@ namespace STEMLab {
     //% blockGap=2 weight=76
     //% group="Gas"
     export function indenvgeteCO2(): number {
+	    basic.pause(500)
 	    if (indenvGasReady() != true){
 		    return -1;
 	    }
@@ -356,6 +357,7 @@ namespace STEMLab {
     //% blockGap=2 weight=75
     //% group="Gas"
     export function indenvgetTVOC(): number {
+	    basic.pause(500)
 	    if (indenvGasReady() != true){
 		    return -1;
 	    }
