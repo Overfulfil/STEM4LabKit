@@ -23,11 +23,16 @@ enum BME280_P {
 //% groups=['Color', 'Gas', 'Pressure', 'Pressure', 'Moisture', 'others']
 namespace STEMLab {
 
+    let RGB_OK = true
+    let Pressure_OK = true
+    let TOV_OK = true
+    let Moisture_OK = true
+	
     /* G54 TCS34725 RGBC color sensor addr 0x29 return boolean */
     //% blockId="RGBStart" block="RGB Start"
     //% blockGap=2 weight=90
     //% group="Color"
-    export function RGBStart(): boolean {
+    export function RGBStart() : void {
 	pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
 	pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
 	basic.pause(200)
@@ -35,7 +40,7 @@ namespace STEMLab {
 	pins.i2cWriteNumber(41,146,NumberFormat.UInt8LE,false)
 	basic.pause(200)
 	if (pins.i2cReadNumber(41, NumberFormat.UInt8LE, false) !=68) {
-		return false
+		RGB_OK = false
 	}
 	basic.pause(200)
 	/* G54 TCS34725 RGBC color sensor Enable write addr 0x29 register 0x00 command 0x80 */
@@ -47,7 +52,7 @@ namespace STEMLab {
 	pins.i2cWriteNumber(41,128,NumberFormat.UInt8LE,false)
 	basic.pause(200)
 	if (pins.i2cReadNumber(41, NumberFormat.UInt8LE, false) !=3) {
-		return false
+		RGB_OK = false
 	}
 	basic.pause(200)
 	/* G54 TCS34725 RGBC color sensor Status addr 0x29 register 0x13 command 0x93 */
@@ -55,9 +60,9 @@ namespace STEMLab {
 	pins.i2cWriteNumber(41,147,NumberFormat.UInt8LE,false)
 	basic.pause(200)
 	if (pins.i2cReadNumber(41, NumberFormat.UInt8LE, false) !=17) {
-		return false
+		RGB_OK = false
 	}
-	return true
+	RGB_OK = true
     }
 
     /* G54 TCS34725 RGBC color sensor addr 0x29 register 0x14-15 command 0x94-95 return byte */
@@ -241,7 +246,7 @@ namespace STEMLab {
     /**
      * power on
      */
-    //% blockId="BME280_POWER_ON" block="Power On"
+    //% blockId="BME280_POWER_ON" block="Pressure Sensor Start"
     //% weight=22 blockGap=8
     //% group="Pressure"
     export function PowerOn() {
@@ -251,7 +256,8 @@ namespace STEMLab {
 
 /*Soil*/
     //% blockId="readMoisture" block="Soil Moisture (0-4096)"
-    //% blockGap=2 weight=79
+    //% blockGap=2 weight=79 
+    //% group="Moisture"
     export function readMoisture(): number {
    	pins.i2cWriteNumber(81,0,NumberFormat.Int8LE,false)
 	return (4096 - pins.i2cReadNumber(81, NumberFormat.UInt16BE, false))    
@@ -259,6 +265,7 @@ namespace STEMLab {
 	
     //% blockId="soilTooDry" block="Soil too dry?"
     //% blockGap=2 weight=79
+    //% group="Moisture"
     export function soilTooDry(): boolean {
    	pins.i2cWriteNumber(81,0,NumberFormat.Int8LE,false)
 	if ((4096 - pins.i2cReadNumber(81, NumberFormat.UInt16BE, false)) < 100) {
@@ -269,6 +276,7 @@ namespace STEMLab {
 
     //% blockId="soilTooWet" block="Soil too Wet?"
     //% blockGap=2 weight=79
+    //% group="Moisture"
     export function soilTooWet(): boolean {
    	pins.i2cWriteNumber(81,0,NumberFormat.Int8LE,false)
 	if ((4096 - pins.i2cReadNumber(81, NumberFormat.UInt16BE, false)) > 3000) {
@@ -280,6 +288,7 @@ namespace STEMLab {
 /* TVOC*/
     //% blockId="indenvStart" block="IndEnv Sensor Start"
     //% blockGap=2 weight=79
+    //% group="Gas"
     export function indenvStart(): boolean {
 	    pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
 	    pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
@@ -315,8 +324,9 @@ namespace STEMLab {
     }
 	
 
-    //% blockId="indenvgeteCO2" block="IndEnv get eCO2"
+    //% blockId="indenvgeteCO2" block="Estimated CO2"
     //% blockGap=2 weight=76
+    //% group="Gas"
     export function indenvgeteCO2(): number {
 	    pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
 	    pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
@@ -326,8 +336,9 @@ namespace STEMLab {
 	    return pins.i2cReadNumber(90, NumberFormat.UInt16BE, false)
     }
 
-    //% blockId="indenvgetTVOC" block="IndEnv get TVOC"
+    //% blockId="indenvgetTVOC" block="TVOC"
     //% blockGap=2 weight=75
+    //% group="Gas"
     export function indenvgetTVOC(): number {
 	    pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
 	    pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
@@ -340,6 +351,7 @@ namespace STEMLab {
 
     //% blockId="indenvGasStatus" block="IndEnv Gas Status"
     //% blockGap=2 weight=74
+    //% group="Gas"
     export function indenvGasStatus(): number {
 	    pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
 	    pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
@@ -353,6 +365,7 @@ namespace STEMLab {
 
     //% blockId="indenvGasReady" block="IndEnv Gas Data Ready"
     //% blockGap=2 weight=73
+    //% group="Gas"
     export function indenvGasReady(): boolean {
 	    pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
 	    pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
