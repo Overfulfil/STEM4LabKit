@@ -272,7 +272,34 @@ namespace STEMLab {
     }
 
 /* TVOC*/
-    //% blockId="indenvStart" block="IndEnv Sensor Start"
+	
+    function indenvGasStatus(): number {
+	    pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
+	    pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
+	    basic.pause(200)
+	    pins.i2cWriteNumber(90,0,NumberFormat.UInt8LE,false)
+	    basic.pause(200)
+	    let GasStatus = pins.i2cReadNumber(90, NumberFormat.UInt8LE, false)
+	    basic.pause(200)
+	    return GasStatus
+    }
+
+    function indenvGasReady(): boolean {
+	    if (TVOC_OK != true){
+	           return false
+	    }
+	    pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
+	    pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
+	    basic.pause(200)
+	    pins.i2cWriteNumber(90,0,NumberFormat.UInt8LE,false)
+	    basic.pause(200)
+	    if ((pins.i2cReadNumber(90, NumberFormat.UInt8LE, false) % 16) !=8) {
+		    return false
+	    }
+	    return true
+    }	
+	
+    //% blockId="indenvStart" block="Gas Sensor Start"
     //% blockGap=2 weight=79
     //% group="Gas"
     export function indenvStart(): void {
@@ -314,6 +341,9 @@ namespace STEMLab {
     //% blockGap=2 weight=76
     //% group="Gas"
     export function indenvgeteCO2(): number {
+	    if (indenvGasReady() != true){
+		    return -1;
+	    }
 	    pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
 	    pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
 	    basic.pause(200)
@@ -326,6 +356,9 @@ namespace STEMLab {
     //% blockGap=2 weight=75
     //% group="Gas"
     export function indenvgetTVOC(): number {
+	    if (indenvGasReady() != true){
+		    return -1;
+	    }
 	    pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
 	    pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
 	    basic.pause(200)
@@ -333,36 +366,5 @@ namespace STEMLab {
 	    basic.pause(200)
 	    return (pins.i2cReadNumber(90, NumberFormat.UInt32BE, false) % 65536)
     }
-
-
-    //% blockId="indenvGasStatus" block="IndEnv Gas Status"
-    //% blockGap=2 weight=74
-    //% group="Gas"
-    export function indenvGasStatus(): number {
-	    pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
-	    pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
-	    basic.pause(200)
-	    pins.i2cWriteNumber(90,0,NumberFormat.UInt8LE,false)
-	    basic.pause(200)
-	    let GasStatus = pins.i2cReadNumber(90, NumberFormat.UInt8LE, false)
-	    basic.pause(200)
-	    return GasStatus
-    }
-
-    //% blockId="indenvGasReady" block="IndEnv Gas Data Ready"
-    //% blockGap=2 weight=73
-    //% group="Gas"
-    export function indenvGasReady(): boolean {
-	    pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
-	    pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
-	    basic.pause(200)
-	    pins.i2cWriteNumber(90,0,NumberFormat.UInt8LE,false)
-	    basic.pause(200)
-	    if ((pins.i2cReadNumber(90, NumberFormat.UInt8LE, false) % 16) !=8) {
-		    return false
-	    }
-	    return true
-    }
-
 
 }
