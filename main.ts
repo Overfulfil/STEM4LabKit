@@ -729,12 +729,11 @@ namespace STEMLab {
 
     /**
      * OLED initialize
-     * @param addr is i2c addr, eg: 60
      */
     //% blockId="OLED12864_I2C_init" block="Start OLED"
     //% weight=100 blockGap=8
     //% group="OLED"
-    export function init(addr: number) {
+    export function init() {
         _I2CAddr = 60
         cmd1(0xAE)       // SSD1306_DISPLAYOFF
         cmd1(0xA4)       // SSD1306_DISPLAYALLON_RESUME
