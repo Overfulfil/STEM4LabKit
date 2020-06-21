@@ -735,7 +735,7 @@ namespace STEMLab {
     //% weight=100 blockGap=8
     //% group="OLED"
     export function init(addr: number) {
-        _I2CAddr = 60;
+        _I2CAddr = 60
         cmd1(0xAE)       // SSD1306_DISPLAYOFF
         cmd1(0xA4)       // SSD1306_DISPLAYALLON_RESUME
         cmd2(0xD5, 0xF0) // SSD1306_SETDISPLAYCLOCKDIV
