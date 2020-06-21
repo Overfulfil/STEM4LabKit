@@ -25,7 +25,7 @@ namespace STEMLab {
 
     let RGB_OK = true
     let Pressure_OK = true
-    let TOV_OK = true
+    let TVOC_OK = true
     let Moisture_OK = true
 	
     /* G54 TCS34725 RGBC color sensor addr 0x29 return boolean */
@@ -33,6 +33,7 @@ namespace STEMLab {
     //% blockGap=2 weight=90
     //% group="Color"
     export function RGBStart() : void {
+	RGB_OK = true
 	pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
 	pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
 	basic.pause(200)
@@ -62,25 +63,10 @@ namespace STEMLab {
 	if (pins.i2cReadNumber(41, NumberFormat.UInt8LE, false) !=17) {
 		RGB_OK = false
 	}
-	RGB_OK = true
-    }
-
-    /* G54 TCS34725 RGBC color sensor addr 0x29 register 0x14-15 command 0x94-95 return byte */
-    //% blockId="RGBgetClear" block="RGB get Clear Light"
-    //% blockGap=2 weight=86
-    //% group="Color"
-    export function RGBgetClear(): number {
-	pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
-	pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
-	basic.pause(200)
-	pins.i2cWriteNumber(41,180,NumberFormat.UInt8LE,false)
-	basic.pause(200)
-	let Clrdata = pins.i2cReadNumber(41, NumberFormat.UInt16LE, false)
-        return Clrdata
     }
 
     /* G54 TCS34725 RGBC color sensor addr 0x29 register 0x16-17 command 0x96-97 return byte */
-    //% blockId="RGBgetRed" block="RGB get Red"
+    //% blockId="RGBgetRed" block="Red"
     //% blockGap=2 weight=85
     //% group="Color"
     export function RGBgetRed(): number {
@@ -94,7 +80,7 @@ namespace STEMLab {
     }
 
     /* G54 TCS34725 RGBC color sensor addr 0x29 register 0x18-19 command 0x98-99 return byte */
-    //% blockId="RGBgetGreen" block="RGB get Green"
+    //% blockId="RGBgetGreen" block="Green"
     //% blockGap=2 weight=84
     //% group="Color"
     export function RGBgetGreen(): number {
@@ -108,7 +94,7 @@ namespace STEMLab {
     }
 
     /* G54 TCS34725 RGBC color sensor addr 0x29 register 0x1A-1B command 0x9A-9B return byte */
-    //% blockId="RGBgetBlue" block="RGB get Blue"
+    //% blockId="RGBgetBlue" block="Blue"
     //% blockGap=2 weight=83
     //% group="Color"
     export function RGBgetBlue(): number {
@@ -289,7 +275,8 @@ namespace STEMLab {
     //% blockId="indenvStart" block="IndEnv Sensor Start"
     //% blockGap=2 weight=79
     //% group="Gas"
-    export function indenvStart(): boolean {
+    export function indenvStart(): void {
+	    TVOC_OK = true
 	    pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
 	    pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
 	    basic.pause(200)
@@ -298,7 +285,7 @@ namespace STEMLab {
 	    pins.i2cWriteNumber(90,32,NumberFormat.UInt8LE,false)
 	    basic.pause(200)
 	    if (pins.i2cReadNumber(90, NumberFormat.UInt8LE, false) != 129) {
-		    return false
+		    TVOC_OK = false
 	    }
 	    basic.pause(200)
 	    /* CJMCU-8118 AppStart CCS811 addr 0x5A register 0xF4 */
@@ -311,16 +298,15 @@ namespace STEMLab {
 	    pins.i2cWriteNumber(90,0,NumberFormat.UInt8LE,false)
 	    basic.pause(200)
 	    if (pins.i2cReadNumber(90, NumberFormat.UInt8LE, false) %2 !=0) {
-		    return false
+		    TVOC_OK = false
 	    }
 	    basic.pause(200)
 	    pins.i2cWriteNumber(90,0,NumberFormat.UInt8LE,false)
 	    basic.pause(200)
 	    if (Math.idiv(pins.i2cReadNumber(90, NumberFormat.UInt8LE, false), 16) !=9) {
-		    return false
+		    TVOC_OK = false
 	    }
 	    basic.pause(200)
-	    return true
     }
 	
 
