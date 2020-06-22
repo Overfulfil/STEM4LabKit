@@ -544,7 +544,6 @@ namespace STEMLab {
      * set pixel in OLED
      * @param x is X alis, eg: 0
      * @param y is Y alis, eg: 0
-     * @param color is dot color, eg: 1
      */
     //% blockId="OLED12864_I2C_PIXEL" block="set pixel at x %x|y %y"
     //% weight=70 blockGap=8
@@ -574,7 +573,6 @@ namespace STEMLab {
      * @param x is X alis, eg: 0
      * @param y is Y alis, eg: 0
      * @param s is the text will be show, eg: 'Hello!'
-     * @param color is string color, eg: 1
      */
     //% blockId="OLED12864_I2C_SHOWSTRING" block="show string at x %x|y %y|text %s"
     //% weight=80 blockGap=8
@@ -611,7 +609,6 @@ namespace STEMLab {
      * @param x is X alis, eg: 0
      * @param y is Y alis, eg: 0
      * @param num is the number will be show, eg: 12
-     * @param color is number color, eg: 1
      */
     //% blockId="OLED12864_I2C_NUMBER" block="show a Number at x %x|y %y|number %num"
     //% weight=80 blockGap=8
@@ -620,32 +617,12 @@ namespace STEMLab {
         showString(x, y, num.toString(), color)
     }
 
-    /**
-     * draw a horizontal line
-     * @param x is X alis, eg: 0
-     * @param y is Y alis, eg: 0
-     * @param len is the length of line, eg: 10
-     * @param color is line color, eg: 1
-     */
-    //% blockId="OLED12864_I2C_HLINE" block="draw a horizontal line at x %x|y %y|number %len"
-    //% weight=71 blockGap=8
-    //% group="OLED"
-    export function hline(x: number, y: number, len: number, color: number = 1) {
+    function hline(x: number, y: number, len: number, color: number = 1) {
         for (let i = x; i < (x + len); i++)
             pixel(i, y, color)
     }
 
-    /**
-     * draw a vertical line
-     * @param x is X alis, eg: 0
-     * @param y is Y alis, eg: 0
-     * @param len is the length of line, eg: 10
-     * @param color is line color, eg: 1
-     */
-    //% blockId="OLED12864_I2C_VLINE" block="draw a vertical line at x %x|y %y|number %len"
-    //% weight=72 blockGap=8
-    //% group="OLED"
-    export function vline(x: number, y: number, len: number, color: number = 1) {
+    function vline(x: number, y: number, len: number, color: number = 1) {
         for (let i = y; i < (y + len); i++)
             pixel(x, i, color)
     }
@@ -656,7 +633,6 @@ namespace STEMLab {
      * @param y1 is Y alis, eg: 0
      * @param x2 is X alis, eg: 60
      * @param y2 is Y alis, eg: 30
-     * @param color is line color, eg: 1
      */
     //% blockId="OLED12864_I2C_RECT" block="draw a rectangle at x1 %x1|y1 %y1|x2 %x2|y2 %y2"
     //% weight=73 blockGap=8
@@ -672,13 +648,7 @@ namespace STEMLab {
         vline(x2, y1, y2 - y1 + 1, color)
     }
 
-    /**
-     * draw / redraw screen
-     */
-    //% blockId="OLED12864_I2C_DRAW" block="draw"
-    //% weight=64 blockGap=8
-    //% group="OLED"
-    export function draw() {
+    function draw() {
         set_pos()
         pins.i2cWriteBuffer(_I2CAddr, _screen)
     }
@@ -695,34 +665,16 @@ namespace STEMLab {
         draw()
     }
 
-    /**
-     * turn on screen
-     */
-    //% blockId="OLED12864_I2C_ON" block="turn on"
-    //% weight=62 blockGap=8
-    //% group="OLED"
-    export function on() {
+
+    function on() {
         cmd1(0xAF)
     }
 
-    /**
-     * turn off screen
-     */
-    //% blockId="OLED12864_I2C_OFF" block="turn off"
-    //% weight=61 blockGap=8
-    //% group="OLED"
-    export function off() {
+    function off() {
         cmd1(0xAE)
     }
 
-    /**
-     * zoom mode
-     * @param d true zoom / false normal, eg: true
-     */
-    //% blockId="OLED12864_I2C_ZOOM" block="zoom %d"
-    //% weight=60 blockGap=8
-    //% group="OLED"
-    export function zoom(d: boolean = true) {
+    function zoom(d: boolean = true) {
         _ZOOM = (d) ? 1 : 0
         cmd2(0xd6, _ZOOM)
     }
