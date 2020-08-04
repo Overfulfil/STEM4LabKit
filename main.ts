@@ -700,10 +700,6 @@ namespace STEMLab {
 	basic.pause(100)
     }
 
-    //% blockId="EEPROMWriteByte" block="EEPROM Write Byte address %address|content %content"
-    //% blockGap=2 weight=76
-    //% group="EEPROM"
-	
     //% blockId="EEPROMWriteWord" block="EEPROM Write Word address %address|content %content"
     //% blockGap=2 weight=76
     //% group="EEPROM"
