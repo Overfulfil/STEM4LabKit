@@ -20,7 +20,7 @@ enum BME280_P {
 }
 
 //% weight=0 color=#3CB371 icon="\uf1b3" block="STEM For Lab Kit"
-//% groups=['Color', 'Gas', 'Pressure', 'Pressure', 'Moisture', 'OLED', 'others']
+//% groups=['Color', 'Gas', 'Pressure', 'Pressure', 'Moisture', 'OLED', 'EEPROM', 'others']
 namespace STEMLab {
 
     let RGB_OK = true
@@ -688,4 +688,50 @@ namespace STEMLab {
         _ZOOM = 1
     }	
 
+    //% blockId="EEPROMWriteByte" block="EEPROM Write Byte"
+    //% blockGap=2 weight=76
+    //% group="EEPROM"
+    export function EEPROMWriteByte(address: NumberFormat.UInt8BE, content: NumberFormat.Int8BE): void {
+    	let ret	
+	let buf = pins.createBuffer(2);
+	buf[0] = address
+    	buf[1] = content
+    	pins.i2cWriteBuffer(80, buf, false)
+	basic.pause(100)
+    }
+	
+    //% blockId="EEPROMWriteWord" block="EEPROM Write Word"
+    //% blockGap=2 weight=76
+    //% group="EEPROM"
+    export function EEPROMWriteWord(address: NumberFormat.UInt8BE, content: NumberFormat.Int16BE): void {
+    	let ret3
+	let buf2 = pins.createBuffer(3);
+	buf2[0] = address
+    	buf2[1] = content >> 8
+    	buf2[2] = content & 0xFF
+    	pins.i2cWriteBuffer(80, buf2, false)
+	basic.pause(100)
+    }
+	
+    //% blockId="EEPROMReadByte" block="EEPROM Read Byte"
+    //% blockGap=2 weight=76
+    //% group="EEPROM"
+    export function EEPROMReadByte(address: NumberFormat.UInt8BE): NumberFormat.UInt8BE {
+    	let ret2
+	pins.i2cWriteNumber(80, address, NumberFormat.UInt8BE, true)
+    	ret2 = pins.i2cReadNumber(80, NumberFormat.Int8BE, false)
+    	basic.pause(100)
+    	return ret2
+    }
+	
+    //% blockId="EEPROMReadWord" block="EEPROM Read Word"
+    //% blockGap=2 weight=76
+    //% group="EEPROM"
+    export function EEPROMReadWord(address: NumberFormat.UInt8BE): NumberFormat.Int16BE {
+    	let ret22
+	pins.i2cWriteNumber(80, address, NumberFormat.UInt8BE, true)
+    	ret22 = pins.i2cReadNumber(80, NumberFormat.Int16BE, false)
+    	basic.pause(100)
+    	return ret22
+    }
 }
