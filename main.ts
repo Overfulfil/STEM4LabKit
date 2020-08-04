@@ -688,6 +688,10 @@ namespace STEMLab {
         _ZOOM = 1
     }	
 
+    /**
+     * @param address is write byte address (0~255), eg: 0
+     * @param content is write byte content (-128 to 127), eg: 12
+     */	
     //% blockId="EEPROMWriteByte" block="EEPROM Write Byte address %address|content %content"
     //% blockGap=2 weight=76
     //% group="EEPROM"
@@ -699,6 +703,14 @@ namespace STEMLab {
     	pins.i2cWriteBuffer(80, buf, false)
 	basic.pause(100)
     }
+
+    /**
+     * @param address is write word address (0~255), eg: 0
+     * @param content is write word content (-32768 to 32767), eg: 12
+     */	
+    //% blockId="EEPROMWriteByte" block="EEPROM Write Byte address %address|content %content"
+    //% blockGap=2 weight=76
+    //% group="EEPROM"
 	
     //% blockId="EEPROMWriteWord" block="EEPROM Write Word address %address|content %content"
     //% blockGap=2 weight=76
@@ -712,7 +724,10 @@ namespace STEMLab {
     	pins.i2cWriteBuffer(80, buf2, false)
 	basic.pause(100)
     }
-	
+
+    /**
+     * @param address is read byte address (0~255), eg: 0
+     */		
     //% blockId="EEPROMReadByte" block="EEPROM Read Byte address %address"
     //% blockGap=2 weight=76
     //% group="EEPROM"
@@ -723,7 +738,10 @@ namespace STEMLab {
     	basic.pause(100)
     	return ret2
     }
-	
+
+    /**
+     * @param address is word byte address (0~255), eg: 0
+     */		
     //% blockId="EEPROMReadWord" block="EEPROM Read Word address %address"
     //% blockGap=2 weight=76
     //% group="EEPROM"
