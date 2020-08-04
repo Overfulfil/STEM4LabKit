@@ -688,7 +688,7 @@ namespace STEMLab {
         _ZOOM = 1
     }	
 
-    //% blockId="EEPROMWriteByte" block="EEPROM Write Byte"
+    //% blockId="EEPROMWriteByte" block="EEPROM Write Byte address %address|content %content"
     //% blockGap=2 weight=76
     //% group="EEPROM"
     export function EEPROMWriteByte(address: NumberFormat.UInt8BE, content: NumberFormat.Int8BE): void {
@@ -700,7 +700,7 @@ namespace STEMLab {
 	basic.pause(100)
     }
 	
-    //% blockId="EEPROMWriteWord" block="EEPROM Write Word"
+    //% blockId="EEPROMWriteWord" block="EEPROM Write Word address %address|content %content"
     //% blockGap=2 weight=76
     //% group="EEPROM"
     export function EEPROMWriteWord(address: NumberFormat.UInt8BE, content: NumberFormat.Int16BE): void {
@@ -713,7 +713,7 @@ namespace STEMLab {
 	basic.pause(100)
     }
 	
-    //% blockId="EEPROMReadByte" block="EEPROM Read Byte"
+    //% blockId="EEPROMReadByte" block="EEPROM Read Byte address %address"
     //% blockGap=2 weight=76
     //% group="EEPROM"
     export function EEPROMReadByte(address: NumberFormat.UInt8BE): NumberFormat.UInt8BE {
@@ -724,7 +724,7 @@ namespace STEMLab {
     	return ret2
     }
 	
-    //% blockId="EEPROMReadWord" block="EEPROM Read Word"
+    //% blockId="EEPROMReadWord" block="EEPROM Read Word address %address"
     //% blockGap=2 weight=76
     //% group="EEPROM"
     export function EEPROMReadWord(address: NumberFormat.UInt8BE): NumberFormat.Int16BE {
