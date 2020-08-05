@@ -31,6 +31,7 @@ namespace STEMLab {
     /* G54 TCS34725 RGBC color sensor addr 0x29 return boolean */
     //% blockId="RGBStart" block="RGB Start"
     //% blockGap=2 weight=90
+    //% subcategory="Color" weight=90
     //% group="Color"
     export function RGBStart() : void {
 	RGB_OK = true
@@ -67,7 +68,8 @@ namespace STEMLab {
 
     /* G54 TCS34725 RGBC color sensor addr 0x29 register 0x16-17 command 0x96-97 return byte */
     //% blockId="RGBgetRed" block="Red"
-    //% blockGap=2 weight=85
+    //% blockGap=2 weight=85    
+    //% subcategory="Color" weight=90
     //% group="Color"
     export function RGBgetRed(): number {
 	pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
@@ -81,7 +83,8 @@ namespace STEMLab {
 
     /* G54 TCS34725 RGBC color sensor addr 0x29 register 0x18-19 command 0x98-99 return byte */
     //% blockId="RGBgetGreen" block="Green"
-    //% blockGap=2 weight=84
+    //% blockGap=2 weight=84    
+    //% subcategory="Color" weight=90
     //% group="Color"
     export function RGBgetGreen(): number {
 	pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
@@ -95,7 +98,8 @@ namespace STEMLab {
 
     /* G54 TCS34725 RGBC color sensor addr 0x29 register 0x1A-1B command 0x9A-9B return byte */
     //% blockId="RGBgetBlue" block="Blue"
-    //% blockGap=2 weight=83
+    //% blockGap=2 weight=83    
+    //% subcategory="Color" weight=90
     //% group="Color"
     export function RGBgetBlue(): number {
 	pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
@@ -793,6 +797,7 @@ namespace STEMLab {
     //% rx.defl=SerialPin.P16
     //% ssid.defl=your_ssid
     //% pw.defl=your_password weight=100
+    //% subcategory="ThingSpeak" weight=90
     //% group="ThingSpeak"
     export function initWIFI(tx: SerialPin, rx: SerialPin, baudrate: BaudRate) {
         serial.redirect(
@@ -811,6 +816,7 @@ namespace STEMLab {
     //% block="connect Wifi SSID = %ssid|KEY = %pw"
     //% ssid.defl=your_ssid
     //% pw.defl=your_pw weight=95
+    //% subcategory="ThingSpeak" weight=90
     //% group="ThingSpeak"
     export function connectWifi(ssid: string, pw: string) {
 
