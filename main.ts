@@ -203,6 +203,7 @@ namespace STEMLab {
      */
     //% blockId="BME280_GET_PRESSURE" block="pressure %u"
     //% weight=80 blockGap=8
+    //% subcategory="Pressure" weight=90
     //% group="Pressure"
     export function pressure(u: BME280_P): number {
         get();
@@ -215,6 +216,7 @@ namespace STEMLab {
      */
     //% blockId="BME280_GET_TEMPERATURE" block="temperature %u"
     //% weight=80 blockGap=8
+    //% subcategory="Pressure" weight=90
     //% group="Pressure"
     export function temperature(u: BME280_T): number {
         get();
@@ -227,6 +229,7 @@ namespace STEMLab {
      */
     //% blockId="BME280_GET_HUMIDITY" block="humidity"
     //% weight=80 blockGap=8
+    //% subcategory="Pressure" weight=90
     //% group="Pressure"
     export function humidity(): number {
         get();
@@ -238,6 +241,7 @@ namespace STEMLab {
      */
     //% blockId="BME280_POWER_ON" block="Pressure Sensor Start"
     //% weight=22 blockGap=8
+    //% subcategory="Pressure" weight=90
     //% group="Pressure"
     export function PowerOn() {
         setreg(0xF4, 0x2F)
@@ -247,6 +251,7 @@ namespace STEMLab {
 /*Soil*/
     //% blockId="readMoisture" block="Soil Moisture (0-4096)"
     //% blockGap=2 weight=79 
+    //% subcategory="Soil Moisture" weight=90
     //% group="Moisture"
     export function readMoisture(): number {
    	pins.i2cWriteNumber(81,0,NumberFormat.Int8LE,false)
@@ -282,7 +287,8 @@ namespace STEMLab {
     }	
 	
     //% blockId="indenvStart" block="Gas Sensor Start"
-    //% blockGap=2 weight=79
+    //% blockGap=2 weight=79 
+    //% subcategory="Gas" weight=90
     //% group="Gas"
     export function indenvStart(): void {
 	    TVOC_OK = true
@@ -320,7 +326,8 @@ namespace STEMLab {
 	
 
     //% blockId="indenvgeteCO2" block="Estimated CO2"
-    //% blockGap=2 weight=76
+    //% blockGap=2 weight=76 
+    //% subcategory="Gas" weight=90
     //% group="Gas"
     export function indenvgeteCO2(): number {
 	    basic.pause(500)
@@ -336,7 +343,8 @@ namespace STEMLab {
     }
 
     //% blockId="indenvgetTVOC" block="TVOC"
-    //% blockGap=2 weight=75
+    //% blockGap=2 weight=75 
+    //% subcategory="Gas" weight=90
     //% group="Gas"
     export function indenvgetTVOC(): number {
 	    basic.pause(500)
@@ -528,7 +536,8 @@ namespace STEMLab {
      * @param y is Y alis, eg: 0
      */
     //% blockId="OLED12864_I2C_PIXEL" block="set pixel at x %x|y %y"
-    //% weight=70 blockGap=8
+    //% weight=70 blockGap=8 
+    //% subcategory="OLED" weight=90
     //% group="OLED"
     export function pixel(x: number, y: number, color: number = 1) {
         let page = y >> 3
@@ -557,7 +566,8 @@ namespace STEMLab {
      * @param s is the text will be show, eg: 'Hello!'
      */
     //% blockId="OLED12864_I2C_SHOWSTRING" block="show string at x %x|y %y|text %s"
-    //% weight=80 blockGap=8
+    //% weight=80 blockGap=8 
+    //% subcategory="OLED" weight=90
     //% group="OLED"
     export function showString(x: number, y: number, s: string, color: number = 1) {
         let col = 0
@@ -593,7 +603,8 @@ namespace STEMLab {
      * @param num is the number will be show, eg: 12
      */
     //% blockId="OLED12864_I2C_NUMBER" block="show a Number at x %x|y %y|number %num"
-    //% weight=80 blockGap=8
+    //% weight=80 blockGap=8 
+    //% subcategory="OLED" weight=90
     //% group="OLED"
     export function showNumber(x: number, y: number, num: number, color: number = 1) {
         showString(x, y, num.toString(), color)
@@ -617,7 +628,8 @@ namespace STEMLab {
      * @param y2 is Y alis, eg: 30
      */
     //% blockId="OLED12864_I2C_RECT" block="draw a rectangle at x1 %x1|y1 %y1|x2 %x2|y2 %y2"
-    //% weight=73 blockGap=8
+    //% weight=73 blockGap=8 
+    //% subcategory="OLED" weight=90
     //% group="OLED"
     export function rect(x1: number, y1: number, x2: number, y2: number, color: number = 1) {
         if (x1 > x2)
@@ -639,7 +651,8 @@ namespace STEMLab {
      * clear screen
      */
     //% blockId="OLED12864_I2C_CLEAR" block="clear"
-    //% weight=63 blockGap=8
+    //% weight=63 blockGap=8 
+    //% subcategory="OLED" weight=90
     //% group="OLED"
     export function clear() {
         _screen.fill(0)
@@ -665,7 +678,8 @@ namespace STEMLab {
      * OLED initialize
      */
     //% blockId="OLED12864_I2C_init" block="Start OLED"
-    //% weight=100 blockGap=8
+    //% weight=100 blockGap=8 
+    //% subcategory="OLED" weight=90
     //% group="OLED"
     export function init() {
         _I2CAddr = 60
@@ -693,7 +707,8 @@ namespace STEMLab {
     }	
 	
     //% blockId="EEPROMWriteByte" block="EEPROM Write Byte address %address|content %content"
-    //% blockGap=2 weight=76
+    //% blockGap=2 weight=76 
+    //% subcategory="EEPROM" weight=90
     //% group="EEPROM"
     export function EEPROMWriteByte(address: NumberFormat.UInt8BE, content: NumberFormat.Int8BE): void {
     	let ret	
@@ -705,7 +720,8 @@ namespace STEMLab {
     }
 
     //% blockId="EEPROMWriteWord" block="EEPROM Write Word address %address|content %content"
-    //% blockGap=2 weight=76
+    //% blockGap=2 weight=76 
+    //% subcategory="EEPROM" weight=90
     //% group="EEPROM"
     export function EEPROMWriteWord(address: NumberFormat.UInt8BE, content: NumberFormat.Int16BE): void {
     	let ret3
@@ -719,7 +735,8 @@ namespace STEMLab {
 
 	
     //% blockId="EEPROMReadByte" block="EEPROM Read Byte address %address"
-    //% blockGap=2 weight=76
+    //% blockGap=2 weight=76 
+    //% subcategory="EEPROM" weight=90
     //% group="EEPROM"
     export function EEPROMReadByte(address: NumberFormat.UInt8BE): NumberFormat.UInt8BE {
     	let ret2
@@ -730,7 +747,8 @@ namespace STEMLab {
     }
 
     //% blockId="EEPROMReadWord" block="EEPROM Read Word address %address"
-    //% blockGap=2 weight=76
+    //% blockGap=2 weight=76 
+    //% subcategory="EEPROM" weight=90
     //% group="EEPROM"
     export function EEPROMReadWord(address: NumberFormat.UInt8BE): NumberFormat.Int16BE {
     	let ret22
