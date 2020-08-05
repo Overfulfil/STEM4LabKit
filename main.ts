@@ -688,11 +688,6 @@ namespace STEMLab {
         _ZOOM = 1
     }	
 	
-    /**
-     * Write EEPROM
-     * @param address is write byte address, eg: 2
-     * @param content is write content, eg: 126
-     */
     //% blockId="EEPROMWriteByte" block="EEPROM Write Byte address %address|content %content"
     //% blockGap=2 weight=76
     //% group="EEPROM"
