@@ -729,7 +729,7 @@ namespace STEMLab {
     //% blockGap=2 weight=76 
     //% subcategory="EEPROM" weight=90
     //% group="EEPROM"
-    export function EEPROMWriteWord(address: Number = 2, content: Number = 12000): void {
+    export function EEPROMWriteWord(address: Number = 2, data: Number = 12000): void {
     	let ret3
 	let buf2 = pins.createBuffer(3);
 	buf2[0] = address
