@@ -725,11 +725,11 @@ namespace STEMLab {
     /**
     * Write 1 Word (2Byte) to EEPROM 
     */
-    //% blockId="EEPROMWriteWord" block="EEPROM Write Word address %address |content %content"
+    //% blockId="EEPROMWriteWord" block="EEPROM Write Word address %address |data %content"
     //% blockGap=2 weight=76 
     //% subcategory="EEPROM" weight=90
     //% group="EEPROM"
-    export function EEPROMWriteWord(address: Number = 2, data: Number = 12000): void {
+    export function EEPROMWriteWord(address: Number = 2, content: Number = 12000): void {
     	let ret3
 	let buf2 = pins.createBuffer(3);
 	buf2[0] = address
@@ -761,7 +761,7 @@ namespace STEMLab {
     //% blockGap=2 weight=76 
     //% subcategory="EEPROM" weight=90
     //% group="EEPROM"
-    export function EEPROMReadWord(address= 2): NumberFormat.Int16BE {
+    export function EEPROMReadWord(address: Number = 2): NumberFormat.Int16BE {
     	let ret22
 	pins.i2cWriteNumber(80, address, NumberFormat.UInt8BE, true)
     	ret22 = pins.i2cReadNumber(80, NumberFormat.Int16BE, false)
