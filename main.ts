@@ -705,8 +705,11 @@ namespace STEMLab {
         clear()
         _ZOOM = 1
     }	
-	
-    //% blockId="EEPROMWriteByte" block="EEPROM Write Byte address %address|content %content"
+
+    /**
+    * Write 1 Byte to EEPROM 
+    */
+    //% blockId="EEPROMWriteByte" block="EEPROM Write Byte address %address.defl=2|content %content.defl=125"
     //% blockGap=2 weight=76 
     //% subcategory="EEPROM" weight=90
     //% group="EEPROM"
@@ -719,7 +722,10 @@ namespace STEMLab {
 	basic.pause(100)
     }
 
-    //% blockId="EEPROMWriteWord" block="EEPROM Write Word address %address|content %content"
+    /**
+    * Write 1 Word (2Byte) to EEPROM 
+    */
+    //% blockId="EEPROMWriteWord" block="EEPROM Write Word address %address.defl=2 |content %content.defl=12000"
     //% blockGap=2 weight=76 
     //% subcategory="EEPROM" weight=90
     //% group="EEPROM"
@@ -733,8 +739,10 @@ namespace STEMLab {
 	basic.pause(100)
     }
 
-	
-    //% blockId="EEPROMReadByte" block="EEPROM Read Byte address %address"
+    /**
+    * Read 1 Byte to EEPROM 
+    */	
+    //% blockId="EEPROMReadByte" block="EEPROM Read Byte address %address.defl=2"
     //% blockGap=2 weight=76 
     //% subcategory="EEPROM" weight=90
     //% group="EEPROM"
@@ -746,7 +754,10 @@ namespace STEMLab {
     	return ret2
     }
 
-    //% blockId="EEPROMReadWord" block="EEPROM Read Word address %address"
+    /**
+    * Read 1 Word (2Byte) to EEPROM 
+    */
+    //% blockId="EEPROMReadWord" block="EEPROM Read Word address %address.defl=2"
     //% blockGap=2 weight=76 
     //% subcategory="EEPROM" weight=90
     //% group="EEPROM"
@@ -909,6 +920,7 @@ namespace STEMLab {
     * Check if ESP8266 successfully connected to Wifi
     */
     //% block="Wifi connected %State" weight=70
+    //% subcategory="ThingSpeak" weight=80
     //% group="ThingSpeak"
     export function wifiState(state: boolean) {
         if (wifi_connected == state) {
