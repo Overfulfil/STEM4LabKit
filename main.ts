@@ -833,7 +833,7 @@ namespace STEMLab {
     /**
     * Initialize ESP8266 module and connect it to Wifi router
     */
-    //% block="Initialize ESP8266|Baud rate %baudrate|Wifi SSID = %ssid|Wifi PW = %pw"
+    //% block="Initialize ESP8266|Wifi SSID = %ssid|Wifi PW = %pw"
     //% ssid.defl=your_ssid
     //% pw.defl=your_pw
     //% subcategory="ThingSpeak" weight=100
@@ -860,12 +860,12 @@ namespace STEMLab {
     /**
     * Connect to ThingSpeak and upload data. It would not upload anything if it failed to connect to Wifi or ThingSpeak.
     */
-    //% block="Upload data to ThingSpeak|URL/IP = %ip|Write API key = %write_api_key|Field 1 = %n1|Field 2 = %n2|Field 3 = %n3|Field 4 = %n4|Field 5 = %n5|Field 6 = %n6|Field 7 = %n7|Field 8 = %n8"
-    //% ip.defl=api.thingspeak.com
+    //% block="Upload data to ThingSpeak|Write API key = %write_api_key|Field 1 = %n1|Field 2 = %n2|Field 3 = %n3|Field 4 = %n4|Field 5 = %n5|Field 6 = %n6|Field 7 = %n7|Field 8 = %n8"
     //% write_api_key.defl=your_write_api_key
     //% subcategory="ThingSpeak" weight=90
     //% group="ThingSpeak"
     export function connectThingSpeak(ip: string, write_api_key: string, n1: number, n2: number, n3: number, n4: number, n5: number, n6: number, n7: number, n8: number) {
+	let ip = "api.thingspeak.com"
         if (wifi_connected && write_api_key != "") {
             thingspeak_connected = false
             sendAT("AT+CIPSTART=\"TCP\",\"" + ip + "\",80", 0) // connect to website server
