@@ -32,7 +32,7 @@ namespace STEMLab {
      * Color sensor Start
      */
     //% blockId="RGBStart" block="Color sensor Start"
-    //% blockGap=2 weight=90
+    //% blockGap=2 weight=100
     //% subcategory="Color" weight=90
     //% group="Color"
     export function RGBStart() : void {
