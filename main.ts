@@ -830,18 +830,14 @@ namespace STEMLab {
         return result
     }
 
-    /**
-    * Initialize ESP8266 module and connect it to Wifi router
-    */
-    //% block="Initialize ESP8266|Wifi SSID = %ssid|Wifi PW = %pw"
+    //% block="Initialize ESP8266|RX (Tx of micro:bit) %tx|TX (Rx of micro:bit) %rx|Baud rate %baudrate|Wifi SSID = %ssid|Wifi PW = %pw"
+    //% tx.defl=SerialPin.P8
+    //% rx.defl=SerialPin.P16
     //% ssid.defl=your_ssid
     //% pw.defl=your_pw
-    //% subcategory="ThingSpeak" weight=100
+    //% subcategory="ThingSpeak" weight=90
     //% group="ThingSpeak"
-    export function connectWifi(ssid: string, pw: string) {
-	let tx = SerialPin.P8
-	let rx = SerialPin.P16
-	let BaudRate = 115200
+    export function connectWifi(tx: SerialPin, rx: SerialPin, baudrate: BaudRate, ssid: string, pw: string) {
         wifi_connected = false
         thingspeak_connected = false
         serial.redirect(
