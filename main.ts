@@ -261,13 +261,13 @@ namespace STEMLab {
 /* TVOC*/
 	
     function indenvGasStatus(): number {
-	    pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
-	    pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
-	    basic.pause(200)
-	    pins.i2cWriteNumber(90,0,NumberFormat.UInt8LE,false)
-	    basic.pause(200)
+	    //pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
+	    //pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
+	    //basic.pause(200)
+	    pins.i2cWriteNumber(90,0,NumberFormat.UInt8LE,true)
+	    //basic.pause(200)
 	    let GasStatus = pins.i2cReadNumber(90, NumberFormat.UInt8LE, false)
-	    basic.pause(200)
+	    //basic.pause(200)
 	    return GasStatus
     }
 
@@ -275,11 +275,11 @@ namespace STEMLab {
 	    if (TVOC_OK != true){
 	           return false
 	    }
-	    pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
-	    pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
-	    basic.pause(200)
-	    pins.i2cWriteNumber(90,0,NumberFormat.UInt8LE,false)
-	    basic.pause(200)
+	    //pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
+	    //pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
+	    //basic.pause(200)
+	    pins.i2cWriteNumber(90,0,NumberFormat.UInt8LE,true)
+	    //basic.pause(200)
 	    if ((pins.i2cReadNumber(90, NumberFormat.UInt8LE, false) % 16) !=8) {
 		    return false
 	    }
@@ -292,39 +292,41 @@ namespace STEMLab {
     //% group="Gas"
     export function indenvStart(): void {
 	    TVOC_OK = true
-	    pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
-	    pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
-	    basic.pause(200)
-	    basic.pause(200)
+	    //pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
+	    //pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
+	    //basic.pause(200)
+	    //basic.pause(200)
 	    /* CJMCU-8118 CCS811 addr 0x5A reg 0x20 Read Device ID = 0x81 */
-	    pins.i2cWriteNumber(90,32,NumberFormat.UInt8LE,false)
-	    basic.pause(200)
+	    pins.i2cWriteNumber(90,32,NumberFormat.UInt8LE,true)
+	    //basic.pause(200)
 	    if (pins.i2cReadNumber(90, NumberFormat.UInt8LE, false) != 129) {
 		    TVOC_OK = false
 	    }
 	    basic.pause(200)
 	    /* CJMCU-8118 AppStart CCS811 addr 0x5A register 0xF4 */
 	    pins.i2cWriteNumber(90,244,NumberFormat.UInt8LE,false)
-	    basic.pause(200)
+	    //basic.pause(200)
 	    /* CJMCU-8118 CCS811 Driving Mode 1 addr 0x5A register 0x01 0x0110 */
 	    pins.i2cWriteNumber(90,272,NumberFormat.UInt16BE,false)
 	    basic.pause(200)
 	    /* CJMCU-8118 CCS811 Status addr 0x5A register 0x00 return 1 byte */	    
-	    pins.i2cWriteNumber(90,0,NumberFormat.UInt8LE,false)
-	    basic.pause(200)
+	    pins.i2cWriteNumber(90,0,NumberFormat.UInt8LE,true)
+	    //basic.pause(200)
 	    if (pins.i2cReadNumber(90, NumberFormat.UInt8LE, false) %2 !=0) {
 		    TVOC_OK = false
 	    }
 	    basic.pause(200)
-	    pins.i2cWriteNumber(90,0,NumberFormat.UInt8LE,false)
-	    basic.pause(200)
+	    pins.i2cWriteNumber(90,0,NumberFormat.UInt8LE,true)
+	    //basic.pause(200)
 	    if (Math.idiv(pins.i2cReadNumber(90, NumberFormat.UInt8LE, false), 16) !=9) {
 		    TVOC_OK = false
 	    }
 	    basic.pause(200)
     }
 	
-
+    /**
+    * Read estimated CO2
+    */	
     //% blockId="indenvgeteCO2" block="Estimated CO2"
     //% blockGap=2 weight=76 
     //% subcategory="Gas" weight=90
@@ -334,11 +336,11 @@ namespace STEMLab {
 	    if (indenvGasReady() != true){
 		    return -1;
 	    }
-	    pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
-	    pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
-	    basic.pause(200)
-	    pins.i2cWriteNumber(90,2,NumberFormat.UInt8LE,false)
-	    basic.pause(200)
+	    //pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
+	    //pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
+	    //basic.pause(200)
+	    pins.i2cWriteNumber(90,2,NumberFormat.UInt8LE,true)
+	    //basic.pause(200)
 	    return pins.i2cReadNumber(90, NumberFormat.UInt16BE, false)
     }
 
@@ -351,11 +353,11 @@ namespace STEMLab {
 	    if (indenvGasReady() != true){
 		    return -1;
 	    }
-	    pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
-	    pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
-	    basic.pause(200)
-	    pins.i2cWriteNumber(90,2,NumberFormat.UInt8LE,false)
-	    basic.pause(200)
+	    //pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
+	    //pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
+	    //basic.pause(200)
+	    pins.i2cWriteNumber(90,2,NumberFormat.UInt8LE,true)
+	    //basic.pause(200)
 	    return (pins.i2cReadNumber(90, NumberFormat.UInt32BE, false) % 65536)
     }
 
