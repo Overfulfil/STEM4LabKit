@@ -28,8 +28,10 @@ namespace STEMLab {
     let TVOC_OK = true
     let Moisture_OK = true
 	
-    /* G54 TCS34725 RGBC color sensor addr 0x29 return boolean */
-    //% blockId="RGBStart" block="RGB Start"
+    /**
+     * Color sensor Start
+     */
+    //% blockId="RGBStart" block="Color sensor Start"
     //% blockGap=2 weight=90
     //% subcategory="Color" weight=90
     //% group="Color"
@@ -66,7 +68,9 @@ namespace STEMLab {
 	}
     }
 
-    /* G54 TCS34725 RGBC color sensor addr 0x29 register 0x16-17 command 0x96-97 return byte */
+    /**
+     * Read Red color
+     */
     //% blockId="RGBgetRed" block="Red"
     //% blockGap=2 weight=85    
     //% subcategory="Color" weight=90
@@ -81,7 +85,9 @@ namespace STEMLab {
         return Red
     }
 
-    /* G54 TCS34725 RGBC color sensor addr 0x29 register 0x18-19 command 0x98-99 return byte */
+    /**
+     * Read Green color
+     */
     //% blockId="RGBgetGreen" block="Green"
     //% blockGap=2 weight=84    
     //% subcategory="Color" weight=90
@@ -96,7 +102,9 @@ namespace STEMLab {
         return Green
     }
 
-    /* G54 TCS34725 RGBC color sensor addr 0x29 register 0x1A-1B command 0x9A-9B return byte */
+    /**
+     * Read Blue color
+     */
     //% blockId="RGBgetBlue" block="Blue"
     //% blockGap=2 weight=83    
     //% subcategory="Color" weight=90
@@ -199,7 +207,7 @@ namespace STEMLab {
     }
 
     /**
-     * get pressure
+     * Read pressure
      */
     //% blockId="BME280_GET_PRESSURE" block="pressure %u"
     //% weight=80 blockGap=8
@@ -212,7 +220,7 @@ namespace STEMLab {
     }
 
     /**
-     * get temperature
+     * Read temperature
      */
     //% blockId="BME280_GET_TEMPERATURE" block="temperature %u"
     //% weight=80 blockGap=8
@@ -225,7 +233,7 @@ namespace STEMLab {
     }
 
     /**
-     * get humidity
+     * Read humidity
      */
     //% blockId="BME280_GET_HUMIDITY" block="humidity"
     //% weight=80 blockGap=8
@@ -237,7 +245,7 @@ namespace STEMLab {
     }
 
     /**
-     * power on
+     * Pressure Sensor Start
      */
     //% blockId="BME280_POWER_ON" block="Pressure Sensor Start"
     //% weight=22 blockGap=8
@@ -249,6 +257,9 @@ namespace STEMLab {
 
 
 /*Soil*/
+    /**
+    * Read Soil Moisture (0-4096)
+    */	
     //% blockId="readMoisture" block="Soil Moisture (0-4096)"
     //% blockGap=2 weight=79 
     //% subcategory="Soil Moisture" weight=90
@@ -258,8 +269,7 @@ namespace STEMLab {
 	return (4096 - pins.i2cReadNumber(81, NumberFormat.UInt16BE, false))    
     }
 	
-/* TVOC*/
-	
+/* TVOC*/	
     function indenvGasStatus(): number {
 	    //pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
 	    //pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
@@ -285,7 +295,10 @@ namespace STEMLab {
 	    }
 	    return true
     }	
-	
+
+    /**
+    * Gas sensor Start
+    */		
     //% blockId="indenvStart" block="Gas Sensor Start"
     //% blockGap=2 weight=79 
     //% subcategory="Gas" weight=90
@@ -332,9 +345,14 @@ namespace STEMLab {
     //% subcategory="Gas" weight=90
     //% group="Gas"
     export function indenvgeteCO2(): number {
-	    basic.pause(500)
-	    if (indenvGasReady() != true){
-		    return -1;
+	    
+	    let i = 0
+	    
+	    while (indenvGasReady() != true){
+		    basic.pause(100)
+		    i = i+1
+		    if(i >= 10 )
+			return -1;
 	    }
 	    //pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
 	    //pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
@@ -344,14 +362,22 @@ namespace STEMLab {
 	    return pins.i2cReadNumber(90, NumberFormat.UInt16BE, false)
     }
 
+    /**
+    * Read Total VOC
+    */		
     //% blockId="indenvgetTVOC" block="TVOC"
     //% blockGap=2 weight=75 
     //% subcategory="Gas" weight=90
     //% group="Gas"
     export function indenvgetTVOC(): number {
-	    basic.pause(500)
-	    if (indenvGasReady() != true){
-		    return -1;
+
+	    let i = 0
+	    
+	    while (indenvGasReady() != true){
+		    basic.pause(100)
+		    i = i+1
+		    if(i >= 10 )
+			return -1;
 	    }
 	    //pins.setPull(DigitalPin.P19, PinPullMode.PullUp)
 	    //pins.setPull(DigitalPin.P20, PinPullMode.PullUp)
@@ -677,9 +703,9 @@ namespace STEMLab {
     }
 
     /**
-     * OLED initialize
+     * OLED Start
      */
-    //% blockId="OLED12864_I2C_init" block="Start OLED"
+    //% blockId="OLED12864_I2C_init" block="OLED Start"
     //% weight=100 blockGap=8 
     //% subcategory="OLED" weight=90
     //% group="OLED"
