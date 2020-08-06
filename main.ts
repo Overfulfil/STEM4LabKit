@@ -861,7 +861,7 @@ namespace STEMLab {
     //% expandableArgumentMode="enabled"
     //% subcategory="ThingSpeak" weight=90
     //% group="ThingSpeak"
-    export function connectThingSpeak(ip: string, write_api_key: string, n1: number, n2: number, n3: number, n4: number, n5: number, n6: number, n7: number, n8: number) {
+    export function connectThingSpeak(write_api_key: string, n1: number = 0, n2: number = 0, n3: number = 0, n4: number = 0, n5: number = 0, n6: number = 0, n7: number = 0, n8: number = 0) {
 	let ip = "api.thingspeak.com"
         if (wifi_connected && write_api_key != "") {
             thingspeak_connected = false
