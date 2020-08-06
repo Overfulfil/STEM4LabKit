@@ -346,10 +346,12 @@ namespace STEMLab {
     //% group="Gas"
     export function indenvgeteCO2(): number {
 	    
-	    let i = 0
+	    let i 
+	    
+	    i = 0
 	    
 	    while (indenvGasReady() != true){
-		    basic.pause(100)
+		    basic.pause(200)
 		    i = i+1
 		    if(i >= 10 )
 			return -1;
@@ -371,10 +373,12 @@ namespace STEMLab {
     //% group="Gas"
     export function indenvgetTVOC(): number {
 
-	    let i = 0
+	    let i 
+	    
+	    i = 0
 	    
 	    while (indenvGasReady() != true){
-		    basic.pause(100)
+		    basic.pause(200)
 		    i = i+1
 		    if(i >= 10 )
 			return -1;
