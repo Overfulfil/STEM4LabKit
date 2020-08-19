@@ -913,4 +913,20 @@ namespace STEMLab {
     export function isLastUploadSuccessful() {
         return last_upload_successful
     }
+	
+    /**
+    * Test OLED, Presure sensor, Gas sensor and Color sensor
+    */
+    //% block="Test"
+    export function Test() {
+        RGBStart()
+        indenvStart()
+        PowerOn()
+        init()
+        while (true) {
+            showString(0,0,"" + indenvgetTVOC() + " " + indenvgeteCO2() + " ")
+            showString(0,1,"" + humidity() + " " + pressure(BME280_P.hPa) + " ")
+            showString(0,2,"" + RGBgetRed() + " " + RGBgetGreen() + " " + RGBgetBlue() + " ")
+        }
+    }	
 }
