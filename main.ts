@@ -597,7 +597,7 @@ namespace STEMLab {
      * @param y is Y alis, eg: 0
      * @param s is the text will be show, eg: 'Hello!'
      */
-    //% blockId="OLED12864_I2C_SHOWSTRING" block="show string at colume %x row %y text %s"
+    //% blockId="OLED12864_I2C_SHOWSTRING" block="show string at column %x row %y text %s"
     //% weight=80 blockGap=8 
     //% subcategory="OLED" weight=90
     //% group="OLED"
@@ -634,7 +634,7 @@ namespace STEMLab {
      * @param y is Y alis, eg: 0
      * @param num is the number will be show, eg: 12
      */
-    //% blockId="OLED12864_I2C_NUMBER" block="show a Number at colume %x row %y number %num"
+    //% blockId="OLED12864_I2C_NUMBER" block="show a Number at column %x row %y number %num"
     //% weight=80 blockGap=8 
     //% subcategory="OLED" weight=90
     //% group="OLED"
